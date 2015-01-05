@@ -19,10 +19,8 @@ public class UserProfile {
   private Float longitude = null;
   @JsonProperty("location_proximity_setting")
   private Boolean location_proximity_setting = null;
-  @JsonProperty("start_time_stamp")
-  private Integer start_time_stamp = null;
-  @JsonProperty("end_time_stamp")
-  private Integer end_time_stamp = null;
+  @JsonProperty("availabilities")
+  private List<Long> availabilities = new ArrayList<Long>();
   @JsonProperty("tagged_interests")
   private List<String> tagged_interests = new ArrayList<String>();
   public String getEmail() {
@@ -74,18 +72,11 @@ public class UserProfile {
     this.location_proximity_setting = location_proximity_setting;
   }
 
-  public Integer getStart_time_stamp() {
-    return start_time_stamp;
+  public List<Long> getAvailabilities() {
+    return availabilities;
   }
-  public void setStart_time_stamp(Integer start_time_stamp) {
-    this.start_time_stamp = start_time_stamp;
-  }
-
-  public Integer getEnd_time_stamp() {
-    return end_time_stamp;
-  }
-  public void setEnd_time_stamp(Integer end_time_stamp) {
-    this.end_time_stamp = end_time_stamp;
+  public void setAvailabilities(List<Long> availabilities) {
+    this.availabilities = availabilities;
   }
 
   public List<String> getTagged_interests() {
@@ -106,8 +97,7 @@ public class UserProfile {
     sb.append("  latitude: ").append(latitude).append("\n");
     sb.append("  longitude: ").append(longitude).append("\n");
     sb.append("  location_proximity_setting: ").append(location_proximity_setting).append("\n");
-    sb.append("  start_time_stamp: ").append(start_time_stamp).append("\n");
-    sb.append("  end_time_stamp: ").append(end_time_stamp).append("\n");
+    sb.append("  availabilities: ").append(availabilities).append("\n");
     sb.append("  tagged_interests: ").append(tagged_interests).append("\n");
     sb.append("}\n");
     return sb.toString();

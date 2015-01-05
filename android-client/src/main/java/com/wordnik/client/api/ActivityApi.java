@@ -2,9 +2,9 @@ package com.wordnik.client.api;
 
 import com.wordnik.client.ApiException;
 import com.wordnik.client.ApiInvoker;
+import com.wordnik.client.model.Activity;
 import com.wordnik.client.model.Answer;
 import com.wordnik.client.model.Comment;
-import com.wordnik.client.model.Event;
 import com.wordnik.client.model.Icebreaker;
 import com.wordnik.client.model.Location;
 import com.wordnik.client.model.Report;
@@ -14,7 +14,7 @@ import com.wordnik.client.model.Undocumented;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EventApi {
+public class ActivityApi {
   String basePath = "/dev/extensions";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
 
@@ -34,9 +34,9 @@ public class EventApi {
     return basePath;
   }
 
-  public String post_ (Event body) throws ApiException {
+  public String post_ (Activity body) throws ApiException {
     // create path and map variables
-    String path = "/event".replaceAll("\\{format\\}","json");
+    String path = "/activity".replaceAll("\\{format\\}","json");
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -63,7 +63,7 @@ public class EventApi {
   }
   public String post_icebreaker_answer (Answer body) throws ApiException {
     // create path and map variables
-    String path = "/event/icebreaker/answer".replaceAll("\\{format\\}","json");
+    String path = "/activity/icebreaker/answer".replaceAll("\\{format\\}","json");
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -90,7 +90,7 @@ public class EventApi {
   }
   public String put_icebreaker (Icebreaker body) throws ApiException {
     // create path and map variables
-    String path = "/event/icebreaker".replaceAll("\\{format\\}","json");
+    String path = "/activity/icebreaker".replaceAll("\\{format\\}","json");
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -115,13 +115,13 @@ public class EventApi {
       }
     }
   }
-  public String put_event_user_user (Undocumented body, String event, String user) throws ApiException {
+  public String put_activity_id_user_user_id (Undocumented body, String activity_id, String user_id) throws ApiException {
     // verify required params are set
-    if(event == null || user == null ) {
+    if(activity_id == null || user_id == null ) {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/event/{event}/user/{user}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "event" + "\\}", apiInvoker.escapeString(event.toString())).replaceAll("\\{" + "user" + "\\}", apiInvoker.escapeString(user.toString()));
+    String path = "/activity/{activity_id}/user/{user_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "activity_id" + "\\}", apiInvoker.escapeString(activity_id.toString())).replaceAll("\\{" + "user_id" + "\\}", apiInvoker.escapeString(user_id.toString()));
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -146,13 +146,13 @@ public class EventApi {
       }
     }
   }
-  public String delete_event_id_user_user_id (String event_id, String user_id) throws ApiException {
+  public String delete_activity_id_user_user_id (String activity_id, String user_id) throws ApiException {
     // verify required params are set
-    if(event_id == null || user_id == null ) {
+    if(activity_id == null || user_id == null ) {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/event/{event_id}/user/{user_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "event_id" + "\\}", apiInvoker.escapeString(event_id.toString())).replaceAll("\\{" + "user_id" + "\\}", apiInvoker.escapeString(user_id.toString()));
+    String path = "/activity/{activity_id}/user/{user_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "activity_id" + "\\}", apiInvoker.escapeString(activity_id.toString())).replaceAll("\\{" + "user_id" + "\\}", apiInvoker.escapeString(user_id.toString()));
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -177,13 +177,13 @@ public class EventApi {
       }
     }
   }
-  public String put_event_id_time (Time body, String event_id) throws ApiException {
+  public String put_activity_id_time (Time body, String activity_id) throws ApiException {
     // verify required params are set
-    if(event_id == null ) {
+    if(activity_id == null ) {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/event/{event_id}/time".replaceAll("\\{format\\}","json").replaceAll("\\{" + "event_id" + "\\}", apiInvoker.escapeString(event_id.toString()));
+    String path = "/activity/{activity_id}/time".replaceAll("\\{format\\}","json").replaceAll("\\{" + "activity_id" + "\\}", apiInvoker.escapeString(activity_id.toString()));
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -208,13 +208,13 @@ public class EventApi {
       }
     }
   }
-  public String post_event_id_time_time_id_user_user_id (Undocumented body, String event_id, String time_id, String user_id) throws ApiException {
+  public String post_activity_id_time_time_id_user_user_id (Undocumented body, String activity_id, String time_id, String user_id) throws ApiException {
     // verify required params are set
-    if(event_id == null || time_id == null || user_id == null ) {
+    if(activity_id == null || time_id == null || user_id == null ) {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/event/{event_id}/time/{time_id}/user/{user_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "event_id" + "\\}", apiInvoker.escapeString(event_id.toString())).replaceAll("\\{" + "time_id" + "\\}", apiInvoker.escapeString(time_id.toString())).replaceAll("\\{" + "user_id" + "\\}", apiInvoker.escapeString(user_id.toString()));
+    String path = "/activity/{activity_id}/time/{time_id}/user/{user_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "activity_id" + "\\}", apiInvoker.escapeString(activity_id.toString())).replaceAll("\\{" + "time_id" + "\\}", apiInvoker.escapeString(time_id.toString())).replaceAll("\\{" + "user_id" + "\\}", apiInvoker.escapeString(user_id.toString()));
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -241,7 +241,7 @@ public class EventApi {
   }
   public String put_location (Location body) throws ApiException {
     // create path and map variables
-    String path = "/event/location".replaceAll("\\{format\\}","json");
+    String path = "/activity/location".replaceAll("\\{format\\}","json");
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -266,13 +266,13 @@ public class EventApi {
       }
     }
   }
-  public String post_event_id_location_location_id (Undocumented body, String event_id, String location_id) throws ApiException {
+  public String post_activity_id_location_location_id (Undocumented body, String activity_id, String location_id) throws ApiException {
     // verify required params are set
-    if(event_id == null || location_id == null ) {
+    if(activity_id == null || location_id == null ) {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/event/{event_id}/location/{location_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "event_id" + "\\}", apiInvoker.escapeString(event_id.toString())).replaceAll("\\{" + "location_id" + "\\}", apiInvoker.escapeString(location_id.toString()));
+    String path = "/activity/{activity_id}/location/{location_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "activity_id" + "\\}", apiInvoker.escapeString(activity_id.toString())).replaceAll("\\{" + "location_id" + "\\}", apiInvoker.escapeString(location_id.toString()));
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -299,7 +299,7 @@ public class EventApi {
   }
   public String put_comment (Comment body) throws ApiException {
     // create path and map variables
-    String path = "/event/comment".replaceAll("\\{format\\}","json");
+    String path = "/activity/comment".replaceAll("\\{format\\}","json");
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -326,7 +326,7 @@ public class EventApi {
   }
   public String put_report (Report body) throws ApiException {
     // create path and map variables
-    String path = "/event/report".replaceAll("\\{format\\}","json");
+    String path = "/activity/report".replaceAll("\\{format\\}","json");
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
