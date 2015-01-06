@@ -1,6 +1,8 @@
 package com.wordnik.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+
 public class Time {
   @JsonProperty("start")
   private Integer start = null;

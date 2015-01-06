@@ -2,8 +2,8 @@ package com.wordnik.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import com.wordnik.client.model.DeviceResponse;
 public class DevicesResponse {
   /* Array of system device records. */
   @JsonProperty("record")

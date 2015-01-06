@@ -26,7 +26,7 @@ public class InterestApi {
     return basePath;
   }
 
-  public String get_ (String input) throws ApiException {
+  public String getInterestsWithInput (String input) throws ApiException {
     // create path and map variables
     String path = "/interest".replaceAll("\\{format\\}","json");
 

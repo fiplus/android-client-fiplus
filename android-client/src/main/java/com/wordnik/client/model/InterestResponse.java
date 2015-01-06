@@ -2,8 +2,7 @@ package com.wordnik.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 public class InterestResponse {
   @JsonProperty("interests")
   private List<String> interests = new ArrayList<String>();

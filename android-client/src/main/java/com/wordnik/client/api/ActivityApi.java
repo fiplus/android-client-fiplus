@@ -34,7 +34,7 @@ public class ActivityApi {
     return basePath;
   }
 
-  public String post_ (Activity body) throws ApiException {
+  public String createActivity (Activity body) throws ApiException {
     // create path and map variables
     String path = "/activity".replaceAll("\\{format\\}","json");
 
@@ -327,6 +327,37 @@ public class ActivityApi {
   public String put_report (Report body) throws ApiException {
     // create path and map variables
     String path = "/activity/report".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    String contentType = "application/json";
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, body, headerParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      if(ex.getCode() == 404) {
+        return null;
+      }
+      else {
+        throw ex;
+      }
+    }
+  }
+  public String tagActivityWithInterest (Undocumented body, String activityid, String interest) throws ApiException {
+    // verify required params are set
+    if(activityid == null || interest == null ) {
+       throw new ApiException(400, "missing required params");
+    }
+    // create path and map variables
+    String path = "/activity/{activityid}/interest/{interest}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "activityid" + "\\}", apiInvoker.escapeString(activityid.toString())).replaceAll("\\{" + "interest" + "\\}", apiInvoker.escapeString(interest.toString()));
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();

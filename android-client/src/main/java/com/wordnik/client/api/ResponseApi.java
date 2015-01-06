@@ -27,7 +27,7 @@ public class ResponseApi {
     return basePath;
   }
 
-  public String put_ (InterestResponse body) throws ApiException {
+  public String responses (InterestResponse body) throws ApiException {
     // create path and map variables
     String path = "/response".replaceAll("\\{format\\}","json");
 

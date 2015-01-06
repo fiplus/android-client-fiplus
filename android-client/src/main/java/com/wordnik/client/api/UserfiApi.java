@@ -139,7 +139,7 @@ public class UserfiApi {
       }
     }
   }
-  public String put_profile (UserProfile body) throws ApiException {
+  public String saveUserProfile (UserProfile body) throws ApiException {
     // create path and map variables
     String path = "/userfi/profile".replaceAll("\\{format\\}","json");
 

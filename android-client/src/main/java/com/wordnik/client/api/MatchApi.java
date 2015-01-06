@@ -27,7 +27,7 @@ public class MatchApi {
     return basePath;
   }
 
-  public String get_events (String user_id, Integer num_events, Boolean by_interest, Integer priority_offset, Location body) throws ApiException {
+  public String matchEvents (String user_id, Integer num_events, Boolean by_interest, Integer priority_offset, Location body) throws ApiException {
     // verify required params are set
     if(user_id == null || num_events == null ) {
        throw new ApiException(400, "missing required params");
