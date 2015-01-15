@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
-public class Activity {
+public class ActivityDetailResponse {
   @JsonProperty("name")
   private String name = null;
   @JsonProperty("description")
@@ -71,7 +71,7 @@ public class Activity {
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Activity {\n");
+    sb.append("class ActivityDetailResponse {\n");
     sb.append("  name: ").append(name).append("\n");
     sb.append("  description: ").append(description).append("\n");
     sb.append("  max_attendees: ").append(max_attendees).append("\n");

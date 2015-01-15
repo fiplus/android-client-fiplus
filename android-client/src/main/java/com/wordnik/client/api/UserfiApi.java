@@ -7,6 +7,7 @@ import com.wordnik.client.model.HistoryRequest;
 import com.wordnik.client.model.Undocumented;
 import com.wordnik.client.model.User;
 import com.wordnik.client.model.UserProfile;
+import com.wordnik.client.model.UserProfileDetailResponse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -139,7 +140,7 @@ public class UserfiApi {
       }
     }
   }
-  public String saveUserProfile (UserProfile body) throws ApiException {
+  public String put_profile (UserProfile body) throws ApiException {
     // create path and map variables
     String path = "/userfi/profile".replaceAll("\\{format\\}","json");
 
@@ -153,6 +154,37 @@ public class UserfiApi {
       String response = apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, body, headerParams, contentType);
       if(response != null){
         return (String) ApiInvoker.deserialize(response, "", String.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      if(ex.getCode() == 404) {
+        return null;
+      }
+      else {
+        throw ex;
+      }
+    }
+  }
+  public UserProfileDetailResponse GetUserProfile (String useremail) throws ApiException {
+    // verify required params are set
+    if(useremail == null ) {
+       throw new ApiException(400, "missing required params");
+    }
+    // create path and map variables
+    String path = "/userfi/profile/{useremail}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "useremail" + "\\}", apiInvoker.escapeString(useremail.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    String contentType = "application/json";
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, contentType);
+      if(response != null){
+        return (UserProfileDetailResponse) ApiInvoker.deserialize(response, "", UserProfileDetailResponse.class);
       }
       else {
         return null;

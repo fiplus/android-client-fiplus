@@ -1,6 +1,6 @@
 package com.wordnik.client;
 
-import org.apache.http.client.methods.*;
+import org.apache.http.client.methods.HttpPost;
 
 public class HttpPatch extends HttpPost {
     public static final String METHOD_PATCH = "PATCH";

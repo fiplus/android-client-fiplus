@@ -2,7 +2,8 @@ package com.wordnik.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 public class CustomSetting {
   @JsonProperty("name")
   private List<String> name = new ArrayList<String>();

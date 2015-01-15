@@ -1,7 +1,6 @@
 package com.wordnik.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class HistoryRequest {
   @JsonProperty("duration")
   private Integer duration = null;

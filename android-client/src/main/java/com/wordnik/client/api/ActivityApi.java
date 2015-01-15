@@ -3,6 +3,7 @@ package com.wordnik.client.api;
 import com.wordnik.client.ApiException;
 import com.wordnik.client.ApiInvoker;
 import com.wordnik.client.model.Activity;
+import com.wordnik.client.model.ActivityDetailResponse;
 import com.wordnik.client.model.Answer;
 import com.wordnik.client.model.Comment;
 import com.wordnik.client.model.Icebreaker;
@@ -46,6 +47,70 @@ public class ActivityApi {
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, body, headerParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      if(ex.getCode() == 404) {
+        return null;
+      }
+      else {
+        throw ex;
+      }
+    }
+  }
+  public ActivityDetailResponse GetEvent (String activityid) throws ApiException {
+    // verify required params are set
+    if(activityid == null ) {
+       throw new ApiException(400, "missing required params");
+    }
+    // create path and map variables
+    String path = "/activity/{activityid}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "activityid" + "\\}", apiInvoker.escapeString(activityid.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    String contentType = "application/json";
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, contentType);
+      if(response != null){
+        return (ActivityDetailResponse) ApiInvoker.deserialize(response, "", ActivityDetailResponse.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      if(ex.getCode() == 404) {
+        return null;
+      }
+      else {
+        throw ex;
+      }
+    }
+  }
+  public String GetAttendees (String activityid, Integer Limit) throws ApiException {
+    // verify required params are set
+    if(activityid == null ) {
+       throw new ApiException(400, "missing required params");
+    }
+    // create path and map variables
+    String path = "/activity/{activityid}/user".replaceAll("\\{format\\}","json").replaceAll("\\{" + "activityid" + "\\}", apiInvoker.escapeString(activityid.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    if(!"null".equals(String.valueOf(Limit)))
+      queryParams.put("Limit", String.valueOf(Limit));
+    String contentType = "application/json";
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, contentType);
       if(response != null){
         return (String) ApiInvoker.deserialize(response, "", String.class);
       }
@@ -115,37 +180,6 @@ public class ActivityApi {
       }
     }
   }
-  public String put_activity_id_user_user_id (Undocumented body, String activity_id, String user_id) throws ApiException {
-    // verify required params are set
-    if(activity_id == null || user_id == null ) {
-       throw new ApiException(400, "missing required params");
-    }
-    // create path and map variables
-    String path = "/activity/{activity_id}/user/{user_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "activity_id" + "\\}", apiInvoker.escapeString(activity_id.toString())).replaceAll("\\{" + "user_id" + "\\}", apiInvoker.escapeString(user_id.toString()));
-
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-
-    String contentType = "application/json";
-
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, body, headerParams, contentType);
-      if(response != null){
-        return (String) ApiInvoker.deserialize(response, "", String.class);
-      }
-      else {
-        return null;
-      }
-    } catch (ApiException ex) {
-      if(ex.getCode() == 404) {
-        return null;
-      }
-      else {
-        throw ex;
-      }
-    }
-  }
   public String delete_activity_id_user_user_id (String activity_id, String user_id) throws ApiException {
     // verify required params are set
     if(activity_id == null || user_id == null ) {
@@ -162,37 +196,6 @@ public class ActivityApi {
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, null, headerParams, contentType);
-      if(response != null){
-        return (String) ApiInvoker.deserialize(response, "", String.class);
-      }
-      else {
-        return null;
-      }
-    } catch (ApiException ex) {
-      if(ex.getCode() == 404) {
-        return null;
-      }
-      else {
-        throw ex;
-      }
-    }
-  }
-  public String put_activity_id_time (Time body, String activity_id) throws ApiException {
-    // verify required params are set
-    if(activity_id == null ) {
-       throw new ApiException(400, "missing required params");
-    }
-    // create path and map variables
-    String path = "/activity/{activity_id}/time".replaceAll("\\{format\\}","json").replaceAll("\\{" + "activity_id" + "\\}", apiInvoker.escapeString(activity_id.toString()));
-
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-
-    String contentType = "application/json";
-
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, body, headerParams, contentType);
       if(response != null){
         return (String) ApiInvoker.deserialize(response, "", String.class);
       }
@@ -239,9 +242,13 @@ public class ActivityApi {
       }
     }
   }
-  public String put_location (Location body) throws ApiException {
+  public String suggestTimePeriodForActivity (Time body, String activityId) throws ApiException {
+    // verify required params are set
+    if(activityId == null ) {
+       throw new ApiException(400, "missing required params");
+    }
     // create path and map variables
-    String path = "/activity/location".replaceAll("\\{format\\}","json");
+    String path = "/activity/{activityId}/time".replaceAll("\\{format\\}","json").replaceAll("\\{" + "activityId" + "\\}", apiInvoker.escapeString(activityId.toString()));
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -251,6 +258,68 @@ public class ActivityApi {
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, body, headerParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      if(ex.getCode() == 404) {
+        return null;
+      }
+      else {
+        throw ex;
+      }
+    }
+  }
+  public String suggestLocationForActivity (Location body, String activityId) throws ApiException {
+    // verify required params are set
+    if(activityId == null ) {
+       throw new ApiException(400, "missing required params");
+    }
+    // create path and map variables
+    String path = "/activity/{activityId}/location".replaceAll("\\{format\\}","json").replaceAll("\\{" + "activityId" + "\\}", apiInvoker.escapeString(activityId.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    String contentType = "application/json";
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, body, headerParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      if(ex.getCode() == 404) {
+        return null;
+      }
+      else {
+        throw ex;
+      }
+    }
+  }
+  public String voteForSuggestion (Undocumented body, String suggestionId, String userId) throws ApiException {
+    // verify required params are set
+    if(suggestionId == null || userId == null ) {
+       throw new ApiException(400, "missing required params");
+    }
+    // create path and map variables
+    String path = "/activity/suggestion/{suggestionId}/user/{userId}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "suggestionId" + "\\}", apiInvoker.escapeString(suggestionId.toString())).replaceAll("\\{" + "userId" + "\\}", apiInvoker.escapeString(userId.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    String contentType = "application/json";
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, body, headerParams, contentType);
       if(response != null){
         return (String) ApiInvoker.deserialize(response, "", String.class);
       }
@@ -358,6 +427,37 @@ public class ActivityApi {
     }
     // create path and map variables
     String path = "/activity/{activityid}/interest/{interest}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "activityid" + "\\}", apiInvoker.escapeString(activityid.toString())).replaceAll("\\{" + "interest" + "\\}", apiInvoker.escapeString(interest.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    String contentType = "application/json";
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, body, headerParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      if(ex.getCode() == 404) {
+        return null;
+      }
+      else {
+        throw ex;
+      }
+    }
+  }
+  public String joinActivity (Undocumented body, String activityid, String userid) throws ApiException {
+    // verify required params are set
+    if(activityid == null || userid == null ) {
+       throw new ApiException(400, "missing required params");
+    }
+    // create path and map variables
+    String path = "/activity/{activityid}/user/{userid}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "activityid" + "\\}", apiInvoker.escapeString(activityid.toString())).replaceAll("\\{" + "userid" + "\\}", apiInvoker.escapeString(userid.toString()));
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();

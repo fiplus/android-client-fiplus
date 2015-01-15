@@ -1,7 +1,5 @@
 package com.wordnik.client.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Undocumented {
   @Override
   public String toString()  {

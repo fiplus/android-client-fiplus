@@ -2,8 +2,8 @@ package com.wordnik.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.*;
-import com.wordnik.client.model.SessionApp;
+import java.util.ArrayList;
+import java.util.List;
 public class Session {
   /* Identifier for the current user. */
   @JsonProperty("id")

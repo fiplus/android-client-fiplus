@@ -2,8 +2,8 @@ package com.wordnik.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.*;
-import com.wordnik.client.model.Resource;
+import java.util.ArrayList;
+import java.util.List;
 public class Resources {
   /* Array of resources available by this service. */
   @JsonProperty("resource")

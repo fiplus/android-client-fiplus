@@ -2,6 +2,7 @@ package com.wordnik.client.api;
 
 import com.wordnik.client.ApiException;
 import com.wordnik.client.ApiInvoker;
+import com.wordnik.client.model.InterestResponse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class InterestApi {
     return basePath;
   }
 
-  public String getInterestsWithInput (String input) throws ApiException {
+  public InterestResponse getInterestsWithInput (String input) throws ApiException {
     // create path and map variables
     String path = "/interest".replaceAll("\\{format\\}","json");
 
@@ -41,7 +42,7 @@ public class InterestApi {
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, contentType);
       if(response != null){
-        return (String) ApiInvoker.deserialize(response, "", String.class);
+        return (InterestResponse) ApiInvoker.deserialize(response, "", InterestResponse.class);
       }
       else {
         return null;
