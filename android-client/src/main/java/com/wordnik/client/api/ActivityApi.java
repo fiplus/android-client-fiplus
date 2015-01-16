@@ -2,18 +2,17 @@ package com.wordnik.client.api;
 
 import com.wordnik.client.ApiException;
 import com.wordnik.client.ApiInvoker;
+import com.wordnik.client.model.Undocumented;
+import com.wordnik.client.model.Location;
+import com.wordnik.client.model.Comment;
+import com.wordnik.client.model.Time;
+import com.wordnik.client.model.Icebreaker;
 import com.wordnik.client.model.Activity;
 import com.wordnik.client.model.ActivityDetailResponse;
-import com.wordnik.client.model.Answer;
-import com.wordnik.client.model.Comment;
-import com.wordnik.client.model.Icebreaker;
-import com.wordnik.client.model.Location;
 import com.wordnik.client.model.Report;
-import com.wordnik.client.model.Time;
-import com.wordnik.client.model.Undocumented;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.wordnik.client.model.Answer;
+import java.util.*;
+import java.io.File;
 
 public class ActivityApi {
   String basePath = "/dev/extensions";

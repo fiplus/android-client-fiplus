@@ -2,11 +2,13 @@ package com.wordnik.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import com.wordnik.client.model.Time;
 public class UserProfileDetailResponse {
   @JsonProperty("email")
   private String email = null;
+  @JsonProperty("username")
+  private String username = null;
   @JsonProperty("profile_pic")
   private String profile_pic = null;
   @JsonProperty("age")
@@ -14,9 +16,9 @@ public class UserProfileDetailResponse {
   @JsonProperty("gender")
   private String gender = null;
   @JsonProperty("latitude")
-  private Long latitude = null;
+  private Float latitude = null;
   @JsonProperty("longitude")
-  private Long longitude = null;
+  private Float longitude = null;
   @JsonProperty("location_proximity_setting")
   private Boolean location_proximity_setting = null;
   @JsonProperty("availabilities")
@@ -28,6 +30,13 @@ public class UserProfileDetailResponse {
   }
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public String getProfile_pic() {
@@ -51,17 +60,17 @@ public class UserProfileDetailResponse {
     this.gender = gender;
   }
 
-  public Long getLatitude() {
+  public Float getLatitude() {
     return latitude;
   }
-  public void setLatitude(Long latitude) {
+  public void setLatitude(Float latitude) {
     this.latitude = latitude;
   }
 
-  public Long getLongitude() {
+  public Float getLongitude() {
     return longitude;
   }
-  public void setLongitude(Long longitude) {
+  public void setLongitude(Float longitude) {
     this.longitude = longitude;
   }
 
@@ -91,6 +100,7 @@ public class UserProfileDetailResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserProfileDetailResponse {\n");
     sb.append("  email: ").append(email).append("\n");
+    sb.append("  username: ").append(username).append("\n");
     sb.append("  profile_pic: ").append(profile_pic).append("\n");
     sb.append("  age: ").append(age).append("\n");
     sb.append("  gender: ").append(gender).append("\n");

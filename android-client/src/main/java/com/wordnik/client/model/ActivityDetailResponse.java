@@ -2,8 +2,10 @@ package com.wordnik.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import com.wordnik.client.model.Location;
+import com.wordnik.client.model.Time;
+
 public class ActivityDetailResponse {
   @JsonProperty("name")
   private String name = null;

@@ -1,22 +1,24 @@
 package com.wordnik.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+
 public class Location {
   @JsonProperty("latitude")
-  private Long latitude = null;
+  private Float latitude = null;
   @JsonProperty("longitude")
-  private Long longitude = null;
-  public Long getLatitude() {
+  private Float longitude = null;
+  public Float getLatitude() {
     return latitude;
   }
-  public void setLatitude(Long latitude) {
+  public void setLatitude(Float latitude) {
     this.latitude = latitude;
   }
 
-  public Long getLongitude() {
+  public Float getLongitude() {
     return longitude;
   }
-  public void setLongitude(Long longitude) {
+  public void setLongitude(Float longitude) {
     this.longitude = longitude;
   }
 

@@ -4,9 +4,8 @@ import com.wordnik.client.ApiException;
 import com.wordnik.client.ApiInvoker;
 import com.wordnik.client.model.ActivitiesResponse;
 import com.wordnik.client.model.Location;
-
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.io.File;
 
 public class MatchApi {
   String basePath = "/dev/extensions";

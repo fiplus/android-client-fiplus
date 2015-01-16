@@ -2,22 +2,21 @@ package com.wordnik.client.api;
 
 import com.wordnik.client.ApiException;
 import com.wordnik.client.ApiInvoker;
-import com.wordnik.client.model.CustomSetting;
-import com.wordnik.client.model.CustomSettings;
-import com.wordnik.client.model.DeviceRequest;
-import com.wordnik.client.model.DevicesResponse;
-import com.wordnik.client.model.Login;
 import com.wordnik.client.model.PasswordRequest;
-import com.wordnik.client.model.PasswordResponse;
-import com.wordnik.client.model.ProfileRequest;
-import com.wordnik.client.model.ProfileResponse;
-import com.wordnik.client.model.Register;
 import com.wordnik.client.model.Resources;
+import com.wordnik.client.model.Login;
+import com.wordnik.client.model.ProfileRequest;
+import com.wordnik.client.model.CustomSetting;
+import com.wordnik.client.model.Register;
+import com.wordnik.client.model.DevicesResponse;
+import com.wordnik.client.model.PasswordResponse;
 import com.wordnik.client.model.Session;
 import com.wordnik.client.model.Success;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.wordnik.client.model.ProfileResponse;
+import com.wordnik.client.model.CustomSettings;
+import com.wordnik.client.model.DeviceRequest;
+import java.util.*;
+import java.io.File;
 
 public class UserApi {
   String basePath = "http://localhost:8080/rest";

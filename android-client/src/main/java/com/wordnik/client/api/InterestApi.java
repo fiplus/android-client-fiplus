@@ -3,9 +3,8 @@ package com.wordnik.client.api;
 import com.wordnik.client.ApiException;
 import com.wordnik.client.ApiInvoker;
 import com.wordnik.client.model.InterestResponse;
-
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.io.File;
 
 public class InterestApi {
   String basePath = "/dev/extensions";
