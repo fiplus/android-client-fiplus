@@ -8,15 +8,15 @@ Implemented Functions:
 * Get interests based on input - InterestApi.getInterestsWithInput()
 * Configure user profile - UserfiApi.saveUserProfile()
 * Tag activity with interests - ActivityApi.tagActivityWithInterest()
-Userfi.GetUserProfile
-Activity.createActivity
-Activity.GetEvent (we didn't catch a naming mistake. oh well)
-Activity.GetAttendees
-Activity.suggestTimePeriod
-Activity.suggestLocations
-Activity.voteForSuggestion
-Activity.tagActivityWithInterest
-Activity.joinActivity
-Match.matchActivities
-Interest.getInterestsWithInput
+* Userfi.GetUserProfile
+* Activity.createActivity
+* Activity.GetEvent (we didn't catch a naming mistake. oh well)
+* Activity.GetAttendees
+* Activity.suggestTimePeriod
+* Activity.suggestLocations
+* Activity.voteForSuggestion
+* Activity.tagActivityWithInterest
+* Activity.joinActivity
+* Match.matchActivities
+* Interest.getInterestsWithInput
 
