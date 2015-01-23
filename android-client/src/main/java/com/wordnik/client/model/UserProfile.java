@@ -3,8 +3,8 @@ package com.wordnik.client.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.*;
+import com.wordnik.client.model.Location;
 import com.wordnik.client.model.Time;
-
 public class UserProfile {
   @JsonProperty("email")
   private String email = null;
@@ -13,19 +13,19 @@ public class UserProfile {
   @JsonProperty("profile_pic")
   private String profile_pic = null;
   @JsonProperty("age")
-  private Integer age = null;
+  private Double age = null;
   @JsonProperty("gender")
   private String gender = null;
-  @JsonProperty("latitude")
-  private Float latitude = null;
-  @JsonProperty("longitude")
-  private Float longitude = null;
+  @JsonProperty("location")
+  private Location location = null;
   @JsonProperty("location_proximity_setting")
   private Boolean location_proximity_setting = null;
   @JsonProperty("availabilities")
   private List<Time> availabilities = new ArrayList<Time>();
   @JsonProperty("tagged_interests")
   private List<String> tagged_interests = new ArrayList<String>();
+  @JsonProperty("id")
+  private Double id = null;
   public String getEmail() {
     return email;
   }
@@ -47,10 +47,10 @@ public class UserProfile {
     this.profile_pic = profile_pic;
   }
 
-  public Integer getAge() {
+  public Double getAge() {
     return age;
   }
-  public void setAge(Integer age) {
+  public void setAge(Double age) {
     this.age = age;
   }
 
@@ -61,18 +61,11 @@ public class UserProfile {
     this.gender = gender;
   }
 
-  public Float getLatitude() {
-    return latitude;
+  public Location getLocation() {
+    return location;
   }
-  public void setLatitude(Float latitude) {
-    this.latitude = latitude;
-  }
-
-  public Float getLongitude() {
-    return longitude;
-  }
-  public void setLongitude(Float longitude) {
-    this.longitude = longitude;
+  public void setLocation(Location location) {
+    this.location = location;
   }
 
   public Boolean getLocation_proximity_setting() {
@@ -96,6 +89,13 @@ public class UserProfile {
     this.tagged_interests = tagged_interests;
   }
 
+  public Double getId() {
+    return id;
+  }
+  public void setId(Double id) {
+    this.id = id;
+  }
+
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
@@ -105,11 +105,11 @@ public class UserProfile {
     sb.append("  profile_pic: ").append(profile_pic).append("\n");
     sb.append("  age: ").append(age).append("\n");
     sb.append("  gender: ").append(gender).append("\n");
-    sb.append("  latitude: ").append(latitude).append("\n");
-    sb.append("  longitude: ").append(longitude).append("\n");
+    sb.append("  location: ").append(location).append("\n");
     sb.append("  location_proximity_setting: ").append(location_proximity_setting).append("\n");
     sb.append("  availabilities: ").append(availabilities).append("\n");
     sb.append("  tagged_interests: ").append(tagged_interests).append("\n");
+    sb.append("  id: ").append(id).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

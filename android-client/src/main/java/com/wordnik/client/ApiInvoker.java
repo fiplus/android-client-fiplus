@@ -1,6 +1,9 @@
 package com.wordnik.client;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.fasterxml.jackson.core.JsonGenerator.Feature;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.annotation.*;
@@ -53,9 +56,13 @@ import javax.net.ssl.X509TrustManager;
 
 public class ApiInvoker {
   private static ApiInvoker INSTANCE = new ApiInvoker();
+  private static final String COOKIE_STORE_PREFS = "cookie-store";
+  private static final String COOKIES_PREFS = "cookie-values";
   private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
 
   private HttpClient client = null;
+
+  private Context context;
 
   private boolean ignoreSSLCertificates = false;
 
@@ -80,6 +87,8 @@ public class ApiInvoker {
   public String escapeString(String str) {
     return str;
   }
+
+  public void setContext(Context ctx) { context = ctx; }
 
   public static Object deserialize(String json, String containerType, Class cls) throws ApiException {
     try{
@@ -144,6 +153,11 @@ public class ApiInvoker {
     }
     headers.put("Accept", "application/json");
 
+    if(context != null) {
+      SharedPreferences cookieStore = context.getSharedPreferences(COOKIE_STORE_PREFS, 0);
+      headers.put("Cookie", cookieStore.getString(COOKIES_PREFS, ""));
+    }
+
     HttpResponse response = null;
     try{
       if("GET".equals(method)) {
@@ -195,6 +209,17 @@ public class ApiInvoker {
           patch.setHeader(key, headers.get(key));
         }
         response = client.execute(patch);
+      }
+
+      if(response != null && context != null) {
+        Header[] cookies = response.getHeaders("Set-Cookie");
+        String cookieStringToSend = "";
+        for(Header c : cookies) {
+            cookieStringToSend += c.getValue().split(";")[0];
+        }
+        SharedPreferences cookieStore = context.getSharedPreferences(COOKIE_STORE_PREFS, 0);
+        SharedPreferences.Editor cookieStoreEditor = cookieStore.edit();
+        cookieStoreEditor.putString(COOKIES_PREFS, cookieStringToSend);
       }
 
       int code = response.getStatusLine().getStatusCode();

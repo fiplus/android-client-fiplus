@@ -5,14 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.*;
 import com.wordnik.client.model.Location;
 import com.wordnik.client.model.Time;
-
 public class Activity {
   @JsonProperty("name")
   private String name = null;
   @JsonProperty("description")
   private String description = null;
   @JsonProperty("max_attendees")
-  private Integer max_attendees = null;
+  private Double max_attendees = null;
   @JsonProperty("creator")
   private String creator = null;
   @JsonProperty("tagged_interests")
@@ -21,6 +20,8 @@ public class Activity {
   private List<Time> suggested_times = new ArrayList<Time>();
   @JsonProperty("suggested_locations")
   private List<Location> suggested_locations = new ArrayList<Location>();
+  @JsonProperty("id")
+  private Double id = null;
   public String getName() {
     return name;
   }
@@ -35,10 +36,10 @@ public class Activity {
     this.description = description;
   }
 
-  public Integer getMax_attendees() {
+  public Double getMax_attendees() {
     return max_attendees;
   }
-  public void setMax_attendees(Integer max_attendees) {
+  public void setMax_attendees(Double max_attendees) {
     this.max_attendees = max_attendees;
   }
 
@@ -70,6 +71,13 @@ public class Activity {
     this.suggested_locations = suggested_locations;
   }
 
+  public Double getId() {
+    return id;
+  }
+  public void setId(Double id) {
+    this.id = id;
+  }
+
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
@@ -81,6 +89,7 @@ public class Activity {
     sb.append("  tagged_interests: ").append(tagged_interests).append("\n");
     sb.append("  suggested_times: ").append(suggested_times).append("\n");
     sb.append("  suggested_locations: ").append(suggested_locations).append("\n");
+    sb.append("  id: ").append(id).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

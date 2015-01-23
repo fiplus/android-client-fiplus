@@ -2,12 +2,11 @@ package com.wordnik.client.api;
 
 import com.wordnik.client.ApiException;
 import com.wordnik.client.ApiInvoker;
-import com.wordnik.client.model.InterestResponse;
 import java.util.*;
 import java.io.File;
 
-public class InterestApi {
-  String basePath = "/dev/extensions";
+public class InterestsApi {
+  String basePath = "http://localhost:3001/api";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
 
   public void addHeader(String key, String value) {
@@ -26,9 +25,10 @@ public class InterestApi {
     return basePath;
   }
 
-  public InterestResponse getInterestsWithInput (String input) throws ApiException {
+  //error info- code: 200 reason: "Request was successful" model: <none>
+  public List<String> getInterestsWithInput (String input) throws ApiException {
     // create path and map variables
-    String path = "/interest".replaceAll("\\{format\\}","json");
+    String path = "/Interests".replaceAll("\\{format\\}","json");
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -41,7 +41,7 @@ public class InterestApi {
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, contentType);
       if(response != null){
-        return (InterestResponse) ApiInvoker.deserialize(response, "", InterestResponse.class);
+        return (List<String>) ApiInvoker.deserialize(response, "List", String.class);
       }
       else {
         return null;

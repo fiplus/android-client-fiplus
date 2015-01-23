@@ -2,13 +2,13 @@ package com.wordnik.client.api;
 
 import com.wordnik.client.ApiException;
 import com.wordnik.client.ApiInvoker;
-import com.wordnik.client.model.ActivitiesResponse;
 import com.wordnik.client.model.Location;
+import com.wordnik.client.model.Activity;
 import java.util.*;
 import java.io.File;
 
-public class MatchApi {
-  String basePath = "/dev/extensions";
+public class MatchesApi {
+  String basePath = "http://localhost:3001/api";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
 
   public void addHeader(String key, String value) {
@@ -27,13 +27,10 @@ public class MatchApi {
     return basePath;
   }
 
-  public ActivitiesResponse matchActivities (String email, Integer num_activities, Boolean by_interest, Integer priority_offset, Location body) throws ApiException {
-    // verify required params are set
-    if(email == null || num_activities == null ) {
-       throw new ApiException(400, "missing required params");
-    }
+  //error info- code: 200 reason: "Request was successful" model: <none>
+  public List<Activity> matchActivities (String email, Double num, Boolean by_interest, Double offset, Location body) throws ApiException {
     // create path and map variables
-    String path = "/match/activities".replaceAll("\\{format\\}","json");
+    String path = "/Matches/activities".replaceAll("\\{format\\}","json");
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -41,18 +38,18 @@ public class MatchApi {
 
     if(!"null".equals(String.valueOf(email)))
       queryParams.put("email", String.valueOf(email));
-    if(!"null".equals(String.valueOf(num_activities)))
-      queryParams.put("num_activities", String.valueOf(num_activities));
+    if(!"null".equals(String.valueOf(num)))
+      queryParams.put("num", String.valueOf(num));
     if(!"null".equals(String.valueOf(by_interest)))
       queryParams.put("by_interest", String.valueOf(by_interest));
-    if(!"null".equals(String.valueOf(priority_offset)))
-      queryParams.put("priority_offset", String.valueOf(priority_offset));
+    if(!"null".equals(String.valueOf(offset)))
+      queryParams.put("offset", String.valueOf(offset));
     String contentType = "application/json";
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, body, headerParams, contentType);
       if(response != null){
-        return (ActivitiesResponse) ApiInvoker.deserialize(response, "", ActivitiesResponse.class);
+        return (List<Activity>) ApiInvoker.deserialize(response, "List", Activity.class);
       }
       else {
         return null;

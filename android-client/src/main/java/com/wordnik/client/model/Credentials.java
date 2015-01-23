@@ -2,14 +2,13 @@ package com.wordnik.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Login {
+public class Credentials {
   @JsonProperty("email")
   private String email = null;
   @JsonProperty("password")
   private String password = null;
-  /* Duration of the session, Defaults to 0, which means until browser is closed. */
-  @JsonProperty("duration")
-  private Integer duration = null;
+  @JsonProperty("id")
+  private Double id = null;
   public String getEmail() {
     return email;
   }
@@ -24,20 +23,20 @@ public class Login {
     this.password = password;
   }
 
-  public Integer getDuration() {
-    return duration;
+  public Double getId() {
+    return id;
   }
-  public void setDuration(Integer duration) {
-    this.duration = duration;
+  public void setId(Double id) {
+    this.id = id;
   }
 
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Login {\n");
+    sb.append("class Credentials {\n");
     sb.append("  email: ").append(email).append("\n");
     sb.append("  password: ").append(password).append("\n");
-    sb.append("  duration: ").append(duration).append("\n");
+    sb.append("  id: ").append(id).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
