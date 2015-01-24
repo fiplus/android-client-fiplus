@@ -6,6 +6,8 @@ import java.util.*;
 import com.wordnik.client.model.Location;
 import com.wordnik.client.model.Time;
 public class UserProfile {
+  @JsonProperty("user_id")
+  private String user_id = null;
   @JsonProperty("email")
   private String email = null;
   @JsonProperty("username")
@@ -26,6 +28,13 @@ public class UserProfile {
   private List<String> tagged_interests = new ArrayList<String>();
   @JsonProperty("id")
   private Double id = null;
+  public String getUser_id() {
+    return user_id;
+  }
+  public void setUser_id(String user_id) {
+    this.user_id = user_id;
+  }
+
   public String getEmail() {
     return email;
   }
@@ -100,6 +109,7 @@ public class UserProfile {
   public String toString()  {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserProfile {\n");
+    sb.append("  user_id: ").append(user_id).append("\n");
     sb.append("  email: ").append(email).append("\n");
     sb.append("  username: ").append(username).append("\n");
     sb.append("  profile_pic: ").append(profile_pic).append("\n");

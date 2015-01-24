@@ -6,6 +6,8 @@ import java.util.*;
 import com.wordnik.client.model.Location;
 import com.wordnik.client.model.Time;
 public class Activity {
+  @JsonProperty("activity_id")
+  private String activity_id = null;
   @JsonProperty("name")
   private String name = null;
   @JsonProperty("description")
@@ -22,6 +24,13 @@ public class Activity {
   private List<Location> suggested_locations = new ArrayList<Location>();
   @JsonProperty("id")
   private Double id = null;
+  public String getActivity_id() {
+    return activity_id;
+  }
+  public void setActivity_id(String activity_id) {
+    this.activity_id = activity_id;
+  }
+
   public String getName() {
     return name;
   }
@@ -82,6 +91,7 @@ public class Activity {
   public String toString()  {
     StringBuilder sb = new StringBuilder();
     sb.append("class Activity {\n");
+    sb.append("  activity_id: ").append(activity_id).append("\n");
     sb.append("  name: ").append(name).append("\n");
     sb.append("  description: ").append(description).append("\n");
     sb.append("  max_attendees: ").append(max_attendees).append("\n");

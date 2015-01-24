@@ -3,12 +3,30 @@ package com.wordnik.client.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Time {
+  @JsonProperty("time_id")
+  private String time_id = null;
+  @JsonProperty("suggestion_id")
+  private String suggestion_id = null;
   @JsonProperty("start")
   private Double start = null;
   @JsonProperty("end")
   private Double end = null;
   @JsonProperty("id")
   private Double id = null;
+  public String getTime_id() {
+    return time_id;
+  }
+  public void setTime_id(String time_id) {
+    this.time_id = time_id;
+  }
+
+  public String getSuggestion_id() {
+    return suggestion_id;
+  }
+  public void setSuggestion_id(String suggestion_id) {
+    this.suggestion_id = suggestion_id;
+  }
+
   public Double getStart() {
     return start;
   }
@@ -34,6 +52,8 @@ public class Time {
   public String toString()  {
     StringBuilder sb = new StringBuilder();
     sb.append("class Time {\n");
+    sb.append("  time_id: ").append(time_id).append("\n");
+    sb.append("  suggestion_id: ").append(suggestion_id).append("\n");
     sb.append("  start: ").append(start).append("\n");
     sb.append("  end: ").append(end).append("\n");
     sb.append("  id: ").append(id).append("\n");

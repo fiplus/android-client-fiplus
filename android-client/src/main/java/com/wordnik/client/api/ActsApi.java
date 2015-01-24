@@ -90,7 +90,7 @@ public class ActsApi {
     }
   }
   //error info- code: 200 reason: "Request was successful" model: <none>
-  public Attendee getAttendees (String id) throws ApiException {
+  public Attendee getAttendees (String id, Double Limit) throws ApiException {
     // verify required params are set
     if(id == null ) {
        throw new ApiException(400, "missing required params");
@@ -102,6 +102,8 @@ public class ActsApi {
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
 
+    if(!"null".equals(String.valueOf(Limit)))
+      queryParams.put("Limit", String.valueOf(Limit));
     String contentType = "application/json";
 
     try {

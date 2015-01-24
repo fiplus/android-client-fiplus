@@ -28,7 +28,7 @@ public class MatchesApi {
   }
 
   //error info- code: 200 reason: "Request was successful" model: <none>
-  public List<Activity> matchActivities (String email, Double num, Boolean by_interest, Double offset, Location body) throws ApiException {
+  public List<Activity> matchActivities (String email, Double num_activities, Boolean by_interest, Double priority_offset, Location body) throws ApiException {
     // create path and map variables
     String path = "/Matches/activities".replaceAll("\\{format\\}","json");
 
@@ -38,12 +38,12 @@ public class MatchesApi {
 
     if(!"null".equals(String.valueOf(email)))
       queryParams.put("email", String.valueOf(email));
-    if(!"null".equals(String.valueOf(num)))
-      queryParams.put("num", String.valueOf(num));
+    if(!"null".equals(String.valueOf(num_activities)))
+      queryParams.put("num_activities", String.valueOf(num_activities));
     if(!"null".equals(String.valueOf(by_interest)))
       queryParams.put("by_interest", String.valueOf(by_interest));
-    if(!"null".equals(String.valueOf(offset)))
-      queryParams.put("offset", String.valueOf(offset));
+    if(!"null".equals(String.valueOf(priority_offset)))
+      queryParams.put("priority_offset", String.valueOf(priority_offset));
     String contentType = "application/json";
 
     try {
