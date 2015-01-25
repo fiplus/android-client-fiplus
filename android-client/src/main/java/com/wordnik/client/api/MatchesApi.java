@@ -8,7 +8,7 @@ import java.util.*;
 import java.io.File;
 
 public class MatchesApi {
-  String basePath = "http://localhost:3001/api";
+  String basePath = "http://dev-fiplus.bitnamiapp.com:3001/api";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
 
   public void addHeader(String key, String value) {
