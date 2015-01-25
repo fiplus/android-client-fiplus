@@ -3,6 +3,7 @@ package com.wordnik.client.api;
 import com.wordnik.client.ApiException;
 import com.wordnik.client.ApiInvoker;
 import com.wordnik.client.model.Credentials;
+import com.wordnik.client.model.WhoAmI;
 import com.wordnik.client.model.SetDeviceId;
 import com.wordnik.client.model.UserProfile;
 import java.util.*;
@@ -112,8 +113,8 @@ public class UsersApi {
       }
     }
   }
-  //error info- code: 204 reason: "Request was successful" model: <none>
-  public void whoAmI () throws ApiException {
+  //error info- code: 200 reason: "Request was successful" model: <none>
+  public WhoAmI whoAmI () throws ApiException {
     // create path and map variables
     String path = "/Users/whoami".replaceAll("\\{format\\}","json");
 
@@ -126,14 +127,14 @@ public class UsersApi {
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, contentType);
       if(response != null){
-        return ;
+        return (WhoAmI) ApiInvoker.deserialize(response, "", WhoAmI.class);
       }
       else {
-        return ;
+        return null;
       }
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
-        return ;
+        return null;
       }
       else {
         throw ex;
