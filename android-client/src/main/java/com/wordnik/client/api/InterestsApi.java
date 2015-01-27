@@ -6,7 +6,7 @@ import java.util.*;
 import java.io.File;
 
 public class InterestsApi {
-  String basePath = "http://dev-fiplus.bitnamiapp.com:3001/api";
+  String basePath = "http://localhost:3001/api";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
 
   public void addHeader(String key, String value) {
@@ -38,21 +38,12 @@ public class InterestsApi {
       queryParams.put("input", String.valueOf(input));
     String contentType = "application/json";
 
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, contentType);
-      if(response != null){
-        return (List<String>) ApiInvoker.deserialize(response, "List", String.class);
-      }
-      else {
-        return null;
-      }
-    } catch (ApiException ex) {
-      if(ex.getCode() == 404) {
-        return null;
-      }
-      else {
-        throw ex;
-      }
+    String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, contentType);
+    if(response != null){
+    	return (List<String>) ApiInvoker.deserialize(response, "List", String.class);
+    }
+    else {
+    	return null;
     }
   }
   }
