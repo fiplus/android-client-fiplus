@@ -215,11 +215,15 @@ public class ApiInvoker {
         Header[] cookies = response.getHeaders("Set-Cookie");
         String cookieStringToSend = "";
         for(Header c : cookies) {
+            if(cookieStringToSend.length() > 0) {
+                cookieStringToSend += ";";
+            }
             cookieStringToSend += c.getValue().split(";")[0];
         }
         SharedPreferences cookieStore = context.getSharedPreferences(COOKIE_STORE_PREFS, 0);
         SharedPreferences.Editor cookieStoreEditor = cookieStore.edit();
         cookieStoreEditor.putString(COOKIES_PREFS, cookieStringToSend);
+        cookieStoreEditor.commit();
       }
 
       int code = response.getStatusLine().getStatusCode();
