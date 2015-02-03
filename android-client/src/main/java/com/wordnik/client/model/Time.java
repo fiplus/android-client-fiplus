@@ -7,6 +7,8 @@ public class Time {
   private String time_id = null;
   @JsonProperty("suggestion_id")
   private String suggestion_id = null;
+  @JsonProperty("suggestion_votes")
+  private Double suggestion_votes = null;
   @JsonProperty("start")
   private Double start = null;
   @JsonProperty("end")
@@ -25,6 +27,13 @@ public class Time {
   }
   public void setSuggestion_id(String suggestion_id) {
     this.suggestion_id = suggestion_id;
+  }
+
+  public Double getSuggestion_votes() {
+    return suggestion_votes;
+  }
+  public void setSuggestion_votes(Double suggestion_votes) {
+    this.suggestion_votes = suggestion_votes;
   }
 
   public Double getStart() {
@@ -54,6 +63,7 @@ public class Time {
     sb.append("class Time {\n");
     sb.append("  time_id: ").append(time_id).append("\n");
     sb.append("  suggestion_id: ").append(suggestion_id).append("\n");
+    sb.append("  suggestion_votes: ").append(suggestion_votes).append("\n");
     sb.append("  start: ").append(start).append("\n");
     sb.append("  end: ").append(end).append("\n");
     sb.append("  id: ").append(id).append("\n");

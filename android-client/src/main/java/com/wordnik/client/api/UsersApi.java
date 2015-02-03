@@ -6,11 +6,12 @@ import com.wordnik.client.model.Credentials;
 import com.wordnik.client.model.WhoAmI;
 import com.wordnik.client.model.SetDeviceId;
 import com.wordnik.client.model.UserProfile;
+import com.wordnik.client.model.Activity;
 import java.util.*;
 import java.io.File;
 
 public class UsersApi {
-  String basePath = "http://localhost:3001/api";
+  String basePath = "http://dev-fiplus.bitnamiapp.com:3001/api";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
 
   public void addHeader(String key, String value) {
@@ -49,7 +50,6 @@ public class UsersApi {
     }
   }
   //error info- code: 204 reason: "Request was successful" model: <none>
-  //error info- code: 500 reason: "Not Found" model: Credentials
   public void login (Credentials body) throws ApiException {
     // create path and map variables
     String path = "/Users/login".replaceAll("\\{format\\}","json");
@@ -145,13 +145,13 @@ public class UsersApi {
     }
   }
   //error info- code: 200 reason: "Request was successful" model: <none>
-  public UserProfile getUserProfile (String email) throws ApiException {
+  public UserProfile getUserProfile (String userId) throws ApiException {
     // verify required params are set
-    if(email == null ) {
+    if(userId == null ) {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/Users/profile/{email}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "email" + "\\}", apiInvoker.escapeString(email.toString()));
+    String path = "/Users/profile/{userId}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "userId" + "\\}", apiInvoker.escapeString(userId.toString()));
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -184,6 +184,29 @@ public class UsersApi {
     }
     else {
     	return ;
+    }
+  }
+  //error info- code: 200 reason: "Request was successful" model: <none>
+  public List<Activity> getActivities (Boolean past, Boolean future) throws ApiException {
+    // create path and map variables
+    String path = "/Users/activities".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    if(!"null".equals(String.valueOf(past)))
+      queryParams.put("past", String.valueOf(past));
+    if(!"null".equals(String.valueOf(future)))
+      queryParams.put("future", String.valueOf(future));
+    String contentType = "application/json";
+
+    String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, contentType);
+    if(response != null){
+    	return (List<Activity>) ApiInvoker.deserialize(response, "List", Activity.class);
+    }
+    else {
+    	return null;
     }
   }
   }

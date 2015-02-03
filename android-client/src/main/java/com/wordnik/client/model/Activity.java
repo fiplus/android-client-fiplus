@@ -8,8 +8,6 @@ import com.wordnik.client.model.Time;
 public class Activity {
   @JsonProperty("activity_id")
   private String activity_id = null;
-  @JsonProperty("name")
-  private String name = null;
   @JsonProperty("description")
   private String description = null;
   @JsonProperty("max_attendees")
@@ -29,13 +27,6 @@ public class Activity {
   }
   public void setActivity_id(String activity_id) {
     this.activity_id = activity_id;
-  }
-
-  public String getName() {
-    return name;
-  }
-  public void setName(String name) {
-    this.name = name;
   }
 
   public String getDescription() {
@@ -92,7 +83,6 @@ public class Activity {
     StringBuilder sb = new StringBuilder();
     sb.append("class Activity {\n");
     sb.append("  activity_id: ").append(activity_id).append("\n");
-    sb.append("  name: ").append(name).append("\n");
     sb.append("  description: ").append(description).append("\n");
     sb.append("  max_attendees: ").append(max_attendees).append("\n");
     sb.append("  creator: ").append(creator).append("\n");
