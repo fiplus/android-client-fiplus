@@ -28,7 +28,7 @@ public class MatchesApi {
   }
 
   //error info- code: 200 reason: "Request was successful" model: <none>
-  public List<Activity> matchActivities (String email, Double num_activities, Boolean by_interest, Double priority_offset, Location body) throws ApiException {
+  public List<Activity> matchActivities (Double num_activities, Boolean by_interest, Double priority_offset, Location body) throws ApiException {
     // create path and map variables
     String path = "/Matches/activities".replaceAll("\\{format\\}","json");
 
@@ -36,8 +36,6 @@ public class MatchesApi {
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
 
-    if(!"null".equals(String.valueOf(email)))
-      queryParams.put("email", String.valueOf(email));
     if(!"null".equals(String.valueOf(num_activities)))
       queryParams.put("num_activities", String.valueOf(num_activities));
     if(!"null".equals(String.valueOf(by_interest)))
