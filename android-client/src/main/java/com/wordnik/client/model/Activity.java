@@ -14,6 +14,8 @@ public class Activity {
   private String description = null;
   @JsonProperty("max_attendees")
   private Double max_attendees = null;
+  @JsonProperty("num_attendees")
+  private Double num_attendees = null;
   @JsonProperty("creator")
   private String creator = null;
   @JsonProperty("tagged_interests")
@@ -50,6 +52,13 @@ public class Activity {
   }
   public void setMax_attendees(Double max_attendees) {
     this.max_attendees = max_attendees;
+  }
+
+  public Double getNum_attendees() {
+    return num_attendees;
+  }
+  public void setNum_attendees(Double num_attendees) {
+    this.num_attendees = num_attendees;
   }
 
   public String getCreator() {
@@ -95,6 +104,7 @@ public class Activity {
     sb.append("  Name: ").append(Name).append("\n");
     sb.append("  description: ").append(description).append("\n");
     sb.append("  max_attendees: ").append(max_attendees).append("\n");
+    sb.append("  num_attendees: ").append(num_attendees).append("\n");
     sb.append("  creator: ").append(creator).append("\n");
     sb.append("  tagged_interests: ").append(tagged_interests).append("\n");
     sb.append("  suggested_times: ").append(suggested_times).append("\n");
