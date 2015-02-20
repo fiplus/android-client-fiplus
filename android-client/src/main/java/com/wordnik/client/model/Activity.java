@@ -14,6 +14,8 @@ public class Activity {
   private String description = null;
   @JsonProperty("max_attendees")
   private Double max_attendees = null;
+  @JsonProperty("allow_joiner_input")
+  private Boolean allow_joiner_input = null;
   @JsonProperty("num_attendees")
   private Double num_attendees = null;
   @JsonProperty("creator")
@@ -52,6 +54,13 @@ public class Activity {
   }
   public void setMax_attendees(Double max_attendees) {
     this.max_attendees = max_attendees;
+  }
+
+  public Boolean getAllow_joiner_input() {
+    return allow_joiner_input;
+  }
+  public void setAllow_joiner_input(Boolean allow_joiner_input) {
+    this.allow_joiner_input = allow_joiner_input;
   }
 
   public Double getNum_attendees() {
@@ -104,6 +113,7 @@ public class Activity {
     sb.append("  Name: ").append(Name).append("\n");
     sb.append("  description: ").append(description).append("\n");
     sb.append("  max_attendees: ").append(max_attendees).append("\n");
+    sb.append("  allow_joiner_input: ").append(allow_joiner_input).append("\n");
     sb.append("  num_attendees: ").append(num_attendees).append("\n");
     sb.append("  creator: ").append(creator).append("\n");
     sb.append("  tagged_interests: ").append(tagged_interests).append("\n");

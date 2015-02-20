@@ -4,6 +4,7 @@ import com.wordnik.client.ApiException;
 import com.wordnik.client.ApiInvoker;
 import com.wordnik.client.model.Credentials;
 import com.wordnik.client.model.WhoAmI;
+import com.wordnik.client.model.Favourites;
 import com.wordnik.client.model.SetDeviceId;
 import com.wordnik.client.model.UserProfile;
 import com.wordnik.client.model.Activity;
@@ -162,6 +163,73 @@ public class UsersApi {
     String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, contentType);
     if(response != null){
     	return (UserProfile) ApiInvoker.deserialize(response, "", UserProfile.class);
+    }
+    else {
+    	return null;
+    }
+  }
+  //error info- code: 204 reason: "Request was successful" model: <none>
+  public void addFavourite (String userId) throws ApiException {
+    // verify required params are set
+    if(userId == null ) {
+       throw new ApiException(400, "missing required params");
+    }
+    // create path and map variables
+    String path = "/Users/favourites/{userId}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "userId" + "\\}", apiInvoker.escapeString(userId.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    String contentType = "application/json";
+
+    String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, null, headerParams, contentType);
+    if(response != null){
+    	return ;
+    }
+    else {
+    	return ;
+    }
+  }
+  //error info- code: 204 reason: "Request was successful" model: <none>
+  public void deleteFavourites (String userId) throws ApiException {
+    // verify required params are set
+    if(userId == null ) {
+       throw new ApiException(400, "missing required params");
+    }
+    // create path and map variables
+    String path = "/Users/favourites/{userId}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "userId" + "\\}", apiInvoker.escapeString(userId.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    String contentType = "application/json";
+
+    String response = apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, null, headerParams, contentType);
+    if(response != null){
+    	return ;
+    }
+    else {
+    	return ;
+    }
+  }
+  //error info- code: 200 reason: "Request was successful" model: <none>
+  public Favourites getFavourites (Double Limit) throws ApiException {
+    // create path and map variables
+    String path = "/Users/favourites".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    if(!"null".equals(String.valueOf(Limit)))
+      queryParams.put("Limit", String.valueOf(Limit));
+    String contentType = "application/json";
+
+    String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, contentType);
+    if(response != null){
+    	return (Favourites) ApiInvoker.deserialize(response, "", Favourites.class);
     }
     else {
     	return null;
