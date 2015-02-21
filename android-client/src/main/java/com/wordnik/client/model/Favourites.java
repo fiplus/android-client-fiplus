@@ -3,15 +3,16 @@ package com.wordnik.client.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.*;
+import com.wordnik.client.model.UserProfile;
 public class Favourites {
   @JsonProperty("favourite_users")
-  private List<String> favourite_users = new ArrayList<String>();
+  private List<UserProfile> favourite_users = new ArrayList<UserProfile>();
   @JsonProperty("id")
   private Double id = null;
-  public List<String> getFavourite_users() {
+  public List<UserProfile> getFavourite_users() {
     return favourite_users;
   }
-  public void setFavourite_users(List<String> favourite_users) {
+  public void setFavourite_users(List<UserProfile> favourite_users) {
     this.favourite_users = favourite_users;
   }
 
