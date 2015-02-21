@@ -3,11 +3,12 @@ package com.wordnik.client.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.*;
+import com.wordnik.client.model.UserProfile;
 public class Attendee {
   @JsonProperty("num_attendees")
   private Double num_attendees = null;
   @JsonProperty("participants")
-  private List<String> participants = new ArrayList<String>();
+  private List<UserProfile> participants = new ArrayList<UserProfile>();
   @JsonProperty("joiners")
   private List<String> joiners = new ArrayList<String>();
   @JsonProperty("id")
@@ -19,10 +20,10 @@ public class Attendee {
     this.num_attendees = num_attendees;
   }
 
-  public List<String> getParticipants() {
+  public List<UserProfile> getParticipants() {
     return participants;
   }
-  public void setParticipants(List<String> participants) {
+  public void setParticipants(List<UserProfile> participants) {
     this.participants = participants;
   }
 
