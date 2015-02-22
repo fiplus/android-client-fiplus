@@ -14,6 +14,8 @@ public class UserProfile {
   private String username = null;
   @JsonProperty("profile_pic")
   private String profile_pic = null;
+  @JsonProperty("favourited")
+  private Boolean favourited = null;
   @JsonProperty("age")
   private Double age = null;
   @JsonProperty("gender")
@@ -54,6 +56,13 @@ public class UserProfile {
   }
   public void setProfile_pic(String profile_pic) {
     this.profile_pic = profile_pic;
+  }
+
+  public Boolean getFavourited() {
+    return favourited;
+  }
+  public void setFavourited(Boolean favourited) {
+    this.favourited = favourited;
   }
 
   public Double getAge() {
@@ -113,6 +122,7 @@ public class UserProfile {
     sb.append("  email: ").append(email).append("\n");
     sb.append("  username: ").append(username).append("\n");
     sb.append("  profile_pic: ").append(profile_pic).append("\n");
+    sb.append("  favourited: ").append(favourited).append("\n");
     sb.append("  age: ").append(age).append("\n");
     sb.append("  gender: ").append(gender).append("\n");
     sb.append("  location: ").append(location).append("\n");
