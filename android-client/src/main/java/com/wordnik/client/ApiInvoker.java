@@ -3,6 +3,7 @@ package com.wordnik.client;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.fasterxml.jackson.core.JsonGenerator.Feature;
 import com.fasterxml.jackson.databind.*;
@@ -26,6 +27,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.net.URLEncoder;
 
+import java.security.KeyStoreException;
+import java.security.UnrecoverableKeyException;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
@@ -51,6 +54,7 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocket;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
@@ -258,7 +262,55 @@ public class ApiInvoker {
         // Trust self signed certificates
         client = new DefaultHttpClient(ignoreSSLConnectionManager, new BasicHttpParams());
       } else {
-        client = new DefaultHttpClient();
+        try {
+            final SSLContext sslContext = SSLContext.getInstance("SSL");
+
+            // set up a TrustManager that trusts everything
+            TrustManager[] trustManagers = new TrustManager[]{
+                    new X509TrustManager() {
+                        public X509Certificate[] getAcceptedIssuers() {
+                            return null;
+                        }
+
+                        public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                        }
+
+                        public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                        }
+                    }};
+
+            sslContext.init(null, trustManagers, new SecureRandom());
+
+            SSLSocketFactory sf = null;
+            sf = new SSLSocketFactory((KeyStore) null) {
+                private javax.net.ssl.SSLSocketFactory sslFactory = sslContext.getSocketFactory();
+
+                public Socket createSocket(Socket socket, String host, int port, boolean autoClose)
+                        throws IOException, UnknownHostException {
+                    return sslFactory.createSocket(socket, host, port, autoClose);
+                }
+
+                public Socket createSocket() throws IOException {
+                    return sslFactory.createSocket();
+                }
+            };
+
+            sf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+            Scheme httpsScheme = new Scheme("https", sf, 3001);
+            SchemeRegistry schemeRegistry = new SchemeRegistry();
+            schemeRegistry.register(httpsScheme);
+            schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
+            ClientConnectionManager sslcm = new SingleClientConnManager(new BasicHttpParams(), schemeRegistry);
+            client = new DefaultHttpClient(sslcm, new BasicHttpParams());
+        }catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        } catch (UnrecoverableKeyException e) {
+            e.printStackTrace();
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        }
       }
     }
     return client;
@@ -294,7 +346,7 @@ public class ApiInvoker {
       };
 
       sf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-      Scheme httpsScheme = new Scheme("https", sf, 443);
+      Scheme httpsScheme = new Scheme("https", sf, 3001);
       SchemeRegistry schemeRegistry = new SchemeRegistry();
       schemeRegistry.register(httpsScheme);
       schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
