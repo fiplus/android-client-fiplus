@@ -22,10 +22,12 @@ public class Activity {
   private String creator = null;
   @JsonProperty("tagged_interests")
   private List<String> tagged_interests = new ArrayList<String>();
-  @JsonProperty("suggested_times")
-  private List<Time> suggested_times = new ArrayList<Time>();
-  @JsonProperty("suggested_locations")
-  private List<Location> suggested_locations = new ArrayList<Location>();
+  @JsonProperty("times")
+  private List<Time> times = new ArrayList<Time>();
+  @JsonProperty("locations")
+  private List<Location> locations = new ArrayList<Location>();
+  @JsonProperty("is_cancelled")
+  private Boolean is_cancelled = null;
   @JsonProperty("id")
   private Double id = null;
   public String getActivity_id() {
@@ -84,18 +86,25 @@ public class Activity {
     this.tagged_interests = tagged_interests;
   }
 
-  public List<Time> getSuggested_times() {
-    return suggested_times;
+  public List<Time> getTimes() {
+    return times;
   }
-  public void setSuggested_times(List<Time> suggested_times) {
-    this.suggested_times = suggested_times;
+  public void setTimes(List<Time> times) {
+    this.times = times;
   }
 
-  public List<Location> getSuggested_locations() {
-    return suggested_locations;
+  public List<Location> getLocations() {
+    return locations;
   }
-  public void setSuggested_locations(List<Location> suggested_locations) {
-    this.suggested_locations = suggested_locations;
+  public void setLocations(List<Location> locations) {
+    this.locations = locations;
+  }
+
+  public Boolean getIs_cancelled() {
+    return is_cancelled;
+  }
+  public void setIs_cancelled(Boolean is_cancelled) {
+    this.is_cancelled = is_cancelled;
   }
 
   public Double getId() {
@@ -117,8 +126,9 @@ public class Activity {
     sb.append("  num_attendees: ").append(num_attendees).append("\n");
     sb.append("  creator: ").append(creator).append("\n");
     sb.append("  tagged_interests: ").append(tagged_interests).append("\n");
-    sb.append("  suggested_times: ").append(suggested_times).append("\n");
-    sb.append("  suggested_locations: ").append(suggested_locations).append("\n");
+    sb.append("  times: ").append(times).append("\n");
+    sb.append("  locations: ").append(locations).append("\n");
+    sb.append("  is_cancelled: ").append(is_cancelled).append("\n");
     sb.append("  id: ").append(id).append("\n");
     sb.append("}\n");
     return sb.toString();

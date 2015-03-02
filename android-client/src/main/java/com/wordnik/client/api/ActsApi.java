@@ -10,7 +10,7 @@ import java.util.*;
 import java.io.File;
 
 public class ActsApi {
-  String basePath = "http://dev-fiplus.bitnamiapp.com:3001/api";
+  String basePath = "http://localhost:3001/api";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
 
   public void addHeader(String key, String value) {
@@ -71,6 +71,29 @@ public class ActsApi {
     	return null;
     }
   }
+  //error info- code: 204 reason: "Request was successful" model: <none>
+  public void cancelActivity (String id) throws ApiException {
+    // verify required params are set
+    if(id == null ) {
+       throw new ApiException(400, "missing required params");
+    }
+    // create path and map variables
+    String path = "/Acts/{id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "id" + "\\}", apiInvoker.escapeString(id.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    String contentType = "application/json";
+
+    String response = apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, null, headerParams, contentType);
+    if(response != null){
+    	return ;
+    }
+    else {
+    	return ;
+    }
+  }
   //error info- code: 200 reason: "Request was successful" model: <none>
   public Attendee getAttendees (String id, Double Limit) throws ApiException {
     // verify required params are set
@@ -112,6 +135,29 @@ public class ActsApi {
     String contentType = "application/json";
 
     String response = apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, null, headerParams, contentType);
+    if(response != null){
+    	return ;
+    }
+    else {
+    	return ;
+    }
+  }
+  //error info- code: 204 reason: "Request was successful" model: <none>
+  public void unjoinActivity (String id) throws ApiException {
+    // verify required params are set
+    if(id == null ) {
+       throw new ApiException(400, "missing required params");
+    }
+    // create path and map variables
+    String path = "/Acts/{id}/user".replaceAll("\\{format\\}","json").replaceAll("\\{" + "id" + "\\}", apiInvoker.escapeString(id.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    String contentType = "application/json";
+
+    String response = apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, null, headerParams, contentType);
     if(response != null){
     	return ;
     }
@@ -204,6 +250,29 @@ public class ActsApi {
     String contentType = "application/json";
 
     String response = apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, null, headerParams, contentType);
+    if(response != null){
+    	return ;
+    }
+    else {
+    	return ;
+    }
+  }
+  //error info- code: 204 reason: "Request was successful" model: <none>
+  public void firmUpSuggestion (String activityId, String suggestionId) throws ApiException {
+    // verify required params are set
+    if(activityId == null || suggestionId == null ) {
+       throw new ApiException(400, "missing required params");
+    }
+    // create path and map variables
+    String path = "/Acts/{activityId}/confirm/{suggestionId}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "activityId" + "\\}", apiInvoker.escapeString(activityId.toString())).replaceAll("\\{" + "suggestionId" + "\\}", apiInvoker.escapeString(suggestionId.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    String contentType = "application/json";
+
+    String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, null, headerParams, contentType);
     if(response != null){
     	return ;
     }
