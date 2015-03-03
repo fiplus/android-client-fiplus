@@ -235,6 +235,29 @@ public class ActsApi {
     }
   }
   //error info- code: 204 reason: "Request was successful" model: <none>
+  public void unvoteForSuggestion (String id) throws ApiException {
+    // verify required params are set
+    if(id == null ) {
+       throw new ApiException(400, "missing required params");
+    }
+    // create path and map variables
+    String path = "/Acts/suggestion/{id}/user".replaceAll("\\{format\\}","json").replaceAll("\\{" + "id" + "\\}", apiInvoker.escapeString(id.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    String contentType = "application/json";
+
+    String response = apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, null, headerParams, contentType);
+    if(response != null){
+    	return ;
+    }
+    else {
+    	return ;
+    }
+  }
+  //error info- code: 204 reason: "Request was successful" model: <none>
   public void tagActivityWithInterest (String id, String text) throws ApiException {
     // verify required params are set
     if(id == null || text == null ) {

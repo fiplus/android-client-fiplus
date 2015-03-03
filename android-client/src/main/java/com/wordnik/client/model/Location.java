@@ -2,6 +2,7 @@ package com.wordnik.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.*;
 public class Location {
   @JsonProperty("location_id")
   private String location_id = null;
@@ -9,6 +10,8 @@ public class Location {
   private String suggestion_id = null;
   @JsonProperty("suggestion_votes")
   private Double suggestion_votes = null;
+  @JsonProperty("suggestion_voters")
+  private List<String> suggestion_voters = new ArrayList<String>();
   @JsonProperty("latitude")
   private Double latitude = null;
   @JsonProperty("longitude")
@@ -34,6 +37,13 @@ public class Location {
   }
   public void setSuggestion_votes(Double suggestion_votes) {
     this.suggestion_votes = suggestion_votes;
+  }
+
+  public List<String> getSuggestion_voters() {
+    return suggestion_voters;
+  }
+  public void setSuggestion_voters(List<String> suggestion_voters) {
+    this.suggestion_voters = suggestion_voters;
   }
 
   public Double getLatitude() {
@@ -64,6 +74,7 @@ public class Location {
     sb.append("  location_id: ").append(location_id).append("\n");
     sb.append("  suggestion_id: ").append(suggestion_id).append("\n");
     sb.append("  suggestion_votes: ").append(suggestion_votes).append("\n");
+    sb.append("  suggestion_voters: ").append(suggestion_voters).append("\n");
     sb.append("  latitude: ").append(latitude).append("\n");
     sb.append("  longitude: ").append(longitude).append("\n");
     sb.append("  id: ").append(id).append("\n");

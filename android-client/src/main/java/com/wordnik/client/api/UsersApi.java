@@ -255,7 +255,7 @@ public class UsersApi {
     }
   }
   //error info- code: 200 reason: "Request was successful" model: <none>
-  public List<Activity> getActivities (Boolean past, Boolean future) throws ApiException {
+  public List<Activity> getActivities (String userId, Boolean past, Boolean future) throws ApiException {
     // create path and map variables
     String path = "/Users/activities".replaceAll("\\{format\\}","json");
 
@@ -263,6 +263,8 @@ public class UsersApi {
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
 
+    if(!"null".equals(String.valueOf(userId)))
+      queryParams.put("userId", String.valueOf(userId));
     if(!"null".equals(String.valueOf(past)))
       queryParams.put("past", String.valueOf(past));
     if(!"null".equals(String.valueOf(future)))
