@@ -4,15 +4,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Joiner {
   @JsonProperty("joiner_id")
-  private Double joiner_id = null;
+  private String joiner_id = null;
   @JsonProperty("confirmed")
   private Boolean confirmed = null;
   @JsonProperty("id")
   private Double id = null;
-  public Double getJoiner_id() {
+  public String getJoiner_id() {
     return joiner_id;
   }
-  public void setJoiner_id(Double joiner_id) {
+  public void setJoiner_id(String joiner_id) {
     this.joiner_id = joiner_id;
   }
 
