@@ -2,6 +2,7 @@ package com.wordnik.client.api;
 
 import com.wordnik.client.ApiException;
 import com.wordnik.client.ApiInvoker;
+import com.wordnik.client.model.CreateSuggestionResponse;
 import com.wordnik.client.model.Location;
 import com.wordnik.client.model.Time;
 import com.wordnik.client.model.Activity;
@@ -165,8 +166,8 @@ public class ActsApi {
     	return ;
     }
   }
-  //error info- code: 204 reason: "Request was successful" model: <none>
-  public void suggestTimeForActivity (String id, Time body) throws ApiException {
+  //error info- code: 200 reason: "Request was successful" model: <none>
+  public CreateSuggestionResponse suggestTimeForActivity (String id, Time body) throws ApiException {
     // verify required params are set
     if(id == null ) {
        throw new ApiException(400, "missing required params");
@@ -182,14 +183,14 @@ public class ActsApi {
 
     String response = apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, body, headerParams, contentType);
     if(response != null){
-    	return ;
+    	return (CreateSuggestionResponse) ApiInvoker.deserialize(response, "", CreateSuggestionResponse.class);
     }
     else {
-    	return ;
+    	return null;
     }
   }
-  //error info- code: 204 reason: "Request was successful" model: <none>
-  public void suggestLocationForActivity (String id, Location body) throws ApiException {
+  //error info- code: 200 reason: "Request was successful" model: <none>
+  public CreateSuggestionResponse suggestLocationForActivity (String id, Location body) throws ApiException {
     // verify required params are set
     if(id == null ) {
        throw new ApiException(400, "missing required params");
@@ -205,10 +206,10 @@ public class ActsApi {
 
     String response = apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, body, headerParams, contentType);
     if(response != null){
-    	return ;
+    	return (CreateSuggestionResponse) ApiInvoker.deserialize(response, "", CreateSuggestionResponse.class);
     }
     else {
-    	return ;
+    	return null;
     }
   }
   //error info- code: 204 reason: "Request was successful" model: <none>
