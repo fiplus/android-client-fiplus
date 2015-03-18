@@ -16,6 +16,8 @@ public class Location {
   private Double latitude = null;
   @JsonProperty("longitude")
   private Double longitude = null;
+  @JsonProperty("address")
+  private String address = null;
   @JsonProperty("id")
   private Double id = null;
   public String getLocation_id() {
@@ -60,6 +62,13 @@ public class Location {
     this.longitude = longitude;
   }
 
+  public String getAddress() {
+    return address;
+  }
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
   public Double getId() {
     return id;
   }
@@ -77,6 +86,7 @@ public class Location {
     sb.append("  suggestion_voters: ").append(suggestion_voters).append("\n");
     sb.append("  latitude: ").append(latitude).append("\n");
     sb.append("  longitude: ").append(longitude).append("\n");
+    sb.append("  address: ").append(address).append("\n");
     sb.append("  id: ").append(id).append("\n");
     sb.append("}\n");
     return sb.toString();

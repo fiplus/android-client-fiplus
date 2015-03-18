@@ -2,7 +2,6 @@ package com.wordnik.client.api;
 
 import com.wordnik.client.ApiException;
 import com.wordnik.client.ApiInvoker;
-import com.wordnik.client.model.Location;
 import com.wordnik.client.model.Activity;
 import java.util.*;
 import java.io.File;
@@ -28,7 +27,7 @@ public class MatchesApi {
   }
 
   //error info- code: 200 reason: "Request was successful" model: <none>
-  public List<Activity> matchActivities (Double num_activities, Boolean by_interest, Double priority_offset, Location body) throws ApiException {
+  public List<Activity> matchActivities (Double num_activities, Boolean by_interest, Boolean by_location, Double priority_offset) throws ApiException {
     // create path and map variables
     String path = "/Matches/activities".replaceAll("\\{format\\}","json");
 
@@ -40,11 +39,13 @@ public class MatchesApi {
       queryParams.put("num_activities", String.valueOf(num_activities));
     if(!"null".equals(String.valueOf(by_interest)))
       queryParams.put("by_interest", String.valueOf(by_interest));
+    if(!"null".equals(String.valueOf(by_location)))
+      queryParams.put("by_location", String.valueOf(by_location));
     if(!"null".equals(String.valueOf(priority_offset)))
       queryParams.put("priority_offset", String.valueOf(priority_offset));
     String contentType = "application/json";
 
-    String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, body, headerParams, contentType);
+    String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, contentType);
     if(response != null){
     	return (List<Activity>) ApiInvoker.deserialize(response, "List", Activity.class);
     }
