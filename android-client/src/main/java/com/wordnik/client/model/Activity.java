@@ -28,6 +28,10 @@ public class Activity {
   private List<Location> locations = new ArrayList<Location>();
   @JsonProperty("is_cancelled")
   private Boolean is_cancelled = null;
+  @JsonProperty("is_confirmed")
+  private Boolean is_confirmed = null;
+  @JsonProperty("needs_rsvp")
+  private Boolean needs_rsvp = null;
   @JsonProperty("id")
   private Double id = null;
   public String getActivity_id() {
@@ -107,6 +111,20 @@ public class Activity {
     this.is_cancelled = is_cancelled;
   }
 
+  public Boolean getIs_confirmed() {
+    return is_confirmed;
+  }
+  public void setIs_confirmed(Boolean is_confirmed) {
+    this.is_confirmed = is_confirmed;
+  }
+
+  public Boolean getNeeds_rsvp() {
+    return needs_rsvp;
+  }
+  public void setNeeds_rsvp(Boolean needs_rsvp) {
+    this.needs_rsvp = needs_rsvp;
+  }
+
   public Double getId() {
     return id;
   }
@@ -129,6 +147,8 @@ public class Activity {
     sb.append("  times: ").append(times).append("\n");
     sb.append("  locations: ").append(locations).append("\n");
     sb.append("  is_cancelled: ").append(is_cancelled).append("\n");
+    sb.append("  is_confirmed: ").append(is_confirmed).append("\n");
+    sb.append("  needs_rsvp: ").append(needs_rsvp).append("\n");
     sb.append("  id: ").append(id).append("\n");
     sb.append("}\n");
     return sb.toString();
